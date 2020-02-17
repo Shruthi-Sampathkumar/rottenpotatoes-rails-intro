@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    
     session[:sort_by] = params[:sort_by] if params[:sort_by].present?
     @title_header = 'hilite' if session[:sort_by] == 'title'
     @release_date_header = 'hilite' if session[:sort_by] == 'release_date'
