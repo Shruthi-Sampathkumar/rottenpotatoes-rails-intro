@@ -13,10 +13,6 @@ class MoviesController < ApplicationController
   def index
     session[:ratings] = params[:ratings] if params[:ratings].present? #part 2
     session[:sort_by] = params[:sort_by] if params[:sort_by].present?
-    if params[:ratings] != session[:ratings] || params[:sort_by] != session[:sort_by] #part 2
-      flash.keep #part 2
-      redirect_to movies_path(ratings: session[:ratings], sort_by: session[:sort_by]) #redirecting to new URI containing appropriate parameters #part 2
-    end #part 2
     @all_ratings = session[:ratings] ? session[:ratings].keys : Movie.get_ratings #part 2
     @movies = Movie.where(rating: @all_ratings).order(session[:sort_by]) #part 2
     @title_header = 'hilite' if session[:sort_by] == 'title'
